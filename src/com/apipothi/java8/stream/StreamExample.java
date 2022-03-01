@@ -1,6 +1,7 @@
 package com.apipothi.java8.stream;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collector;
@@ -156,8 +157,47 @@ System.out.println("************MAX-START*************");
 		
 		System.out.println("************START-FOREACH*************");
 		
+		listOfString.stream().forEach(s-> System.out.println(s));
 		
-		System.out.println("************-FOREACH*************");
+		playlistInfo().stream().forEach(s-> System.out.println(s));
+
+		
+        listOfString.stream().forEach( System.out ::println);
+		
+		playlistInfo().stream().forEach( System.out::println);
+		
+	    System.out.println("************END-FOREACH*************");
+	    
+	    System.out.println("************END-FOREACH*************");
+	    
+	    System.out.println("ToARRAY-START*************");
+	    
+	    Object[] arrayString=listOfString.stream().toArray();
+	    System.out.println(Arrays.toString(arrayString));   
+	    String[] stringarrayString=listOfString.stream().toArray(String[] :: new);
+	    System.out.println(Arrays.toString(stringarrayString));
+	    
+	    System.out.println("ToARRAY-END*************");
+	    
+	    System.out.println("***********COUNT -START*************");
+	    System.out.println("COUNT OF PLAYLIST"+listOfString.stream().count());
+	    System.out.println("COUNT OF DOB"+listOfdob.stream().count());
+	    System.out.println("COUNT OF PLAYLIST DATA"+playlistInfo().stream().count());
+	    
+	    //FILTER WITH COUNT of DOB which is grater then 1950
+	    long dobcount=listOfdob.stream().filter(l -> l>1950).count();
+	    System.out.println("DOB > 1950 -"+dobcount);
+	    
+	    System.out.println("***********COUNT -END*************");
+	    
+	    //HASH CODE
+	    
+	   int rawhashcode=listOfdob.hashCode();
+	   System.out.println("RAW DATA HASH CODE - "+rawhashcode); 
+	   
+	   int streamhashcode=listOfdob.stream().hashCode();
+	   System.out.println("STREAM HASH CODE DATA-"+streamhashcode);
+	    
 	}
         
 	public static List<ApipothiPlaylist> playlistInfo(){
